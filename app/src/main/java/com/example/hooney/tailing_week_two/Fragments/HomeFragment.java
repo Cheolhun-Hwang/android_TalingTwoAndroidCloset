@@ -15,10 +15,12 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.hooney.tailing_week_two.CameraActivity;
 import com.example.hooney.tailing_week_two.MainPageActivity;
 import com.example.hooney.tailing_week_two.R;
 import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 import com.example.hooney.tailing_week_two.gridview_home.homeGridAdapter;
+import com.example.hooney.tailing_week_two.temppa.CameraSurfaceView;
 
 import java.util.ArrayList;
 
@@ -28,6 +30,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
     final static int SIGNAL_toGallery = 4004;
+    final static int SIGNAL_toCamera = 4005;
 
     private View view;
     private homeGridAdapter adapter;
@@ -102,6 +105,14 @@ public class HomeFragment extends Fragment {
                 startActivityForResult(intent, SIGNAL_toGallery);
             }
         });
+
+        Camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), CameraActivity.class);
+                startActivityForResult(intent, SIGNAL_toCamera);
+            }
+        });
     }
 
     @Override
@@ -109,6 +120,17 @@ public class HomeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == SIGNAL_toGallery){
+            if(resultCode == Activity.RESULT_OK){
+                dressItem di = new dressItem();
+                di.setImgURL(data.getData()+""); //스트링을 넣기
+                di.setDressName("Dress " +(list.size()));
+                list.add(di);
+                adapter.notifyDataSetChanged();
+                ((MainPageActivity)getActivity()).setList(list);
+            }else{
+                //실패
+            }
+        }else if(requestCode == SIGNAL_toCamera){
             if(resultCode == Activity.RESULT_OK){
                 dressItem di = new dressItem();
                 di.setImgURL(data.getData()+""); //스트링을 넣기

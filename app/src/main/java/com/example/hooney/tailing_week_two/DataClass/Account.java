@@ -1,12 +1,13 @@
 package com.example.hooney.tailing_week_two.DataClass;
 
+
 import java.io.Serializable;
 
 /**
  * Created by hooney on 2017. 10. 29..
  */
 
-public class Account implements Serializable{
+public class Account implements Serializable {
     private String ID;
     private String Pwd;
     private String Uname;
@@ -21,6 +22,11 @@ public class Account implements Serializable{
         this.ID=i;
         this.Pwd = p;
         this.Uname=u;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     public String getID() {

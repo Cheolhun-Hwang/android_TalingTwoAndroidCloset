@@ -81,8 +81,8 @@ public class homeGridAdapter extends BaseAdapter {
                 Bitmap resized = null;
 
                 //높이가 800이상 일때
-                while (height > 100) {
-                    resized = Bitmap.createScaledBitmap(bitmap, (width * 100) / height, 100, true);
+                while (height > 200) {
+                    resized = Bitmap.createScaledBitmap(bitmap, (width * 200) / height, 200, true);
                     height = resized.getHeight();
                     width = resized.getWidth();
                 }
