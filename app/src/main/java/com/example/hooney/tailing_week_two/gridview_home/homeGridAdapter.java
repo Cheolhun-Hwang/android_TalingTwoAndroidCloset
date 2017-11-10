@@ -64,8 +64,33 @@ public class homeGridAdapter extends BaseAdapter {
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.home_grid_itemview);
 
-
         final dressItem di = list.get(postion);
+        String tempString = "";
+        tempString+= ("옷 이름 : " + di.getDressName()+"\n");
+        tempString+= ("카테고리 : " + di.getCat1() + " > " + di.getCat2() +"\n");
+
+        tempString+= ("옷 계절 : ");
+        int[] tempSeason = di.getSeason();
+        for(int i = 0 ; i< tempSeason.length ; i++){
+            if(tempSeason[i] == -1){
+                tempString+= ("미정 ");
+            }else if(tempSeason[i] ==0){
+                tempString+= ("봄");
+            }else if(tempSeason[i] ==1){
+                tempString+= ("여름");
+            }else if(tempSeason[i] ==2){
+                tempString+= ("가을");
+            }else if(tempSeason[i] ==3){
+                tempString+= ("겨울");
+            }
+
+            if(i != tempSeason.length -1){
+                tempString += ", ";
+            }
+        }
+        tempString += "\n";
+
+
 
         if(di.getImgURL().equals("") || di.getImgURL() == null){
             imageView.setImageResource(R.drawable.ic_clear_24dp);

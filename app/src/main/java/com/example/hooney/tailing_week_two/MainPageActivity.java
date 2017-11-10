@@ -22,6 +22,7 @@ import com.example.hooney.tailing_week_two.Fragments.TempFragment;
 import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 import com.example.hooney.tailing_week_two.temppa.BottomNavigationViewHelper;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 public class MainPageActivity extends AppCompatActivity {
@@ -35,6 +36,8 @@ public class MainPageActivity extends AppCompatActivity {
     private DressFragment dressFragment;
 
     private FragmentManager manager;
+
+    private int flagWho;
 
     private ArrayList<dressItem> list;
 
@@ -57,18 +60,23 @@ public class MainPageActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_one:
                     manager.beginTransaction().replace(R.id.content, new HomeFragment()).commit();
+                    flagWho = 0;
                     return true;
                 case R.id.navigation_two:
                     manager.beginTransaction().replace(R.id.content, new DashFragment()).commit();
+                    flagWho = 1;
                     return true;
                 case R.id.navigation_three:
                     manager.beginTransaction().replace(R.id.content, new DressFragment()).commit();
+                    flagWho = 2;
                     return true;
                 case R.id.navigation_four:
                     manager.beginTransaction().replace(R.id.content, new TempFragment()).commit();
+                    flagWho = 3;
                     return true;
                 case R.id.navigation_five:
                     manager.beginTransaction().replace(R.id.content, new AccFragment()).commit();
+                    flagWho = 4;
                     return true;
             }
             return false;
@@ -100,6 +108,7 @@ public class MainPageActivity extends AppCompatActivity {
     }
 
     private void init(){
+        flagWho = -1;
         manager = getSupportFragmentManager();
 
         list = new ArrayList<dressItem>();
@@ -117,6 +126,7 @@ public class MainPageActivity extends AppCompatActivity {
         for(int i = 0 ; i<5;i++){
             dressItem temp = new dressItem();
             temp.setDressName("Dress " + i);
+            temp.setSeason(new int[]{1, 2});
             list.add(temp);
         }
 

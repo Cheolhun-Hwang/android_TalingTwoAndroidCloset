@@ -16,7 +16,7 @@ public class dressItem {
     private String Cat1;
     private String Cat2;
 
-    private int season; // spring 0 summer 1 fall 2 winter 3
+    private int season[]; // spring 0 summer 1 fall 2 winter 3
 
 
     //이하 차후 변동 가능성있음
@@ -31,12 +31,12 @@ public class dressItem {
         this.dressTag = null;
         this.Cat1 = "";
         this.Cat2 = "";
-        this.season = -1;
+        this.season = null;
         this.isClean = false;
         this.isOut = false;
     }
 
-    public dressItem(String iu, String dN, String[] dC, String[] dT, String c1, String c2, int sn, boolean isc, boolean iso){
+    public dressItem(String iu, String dN, String[] dC, String[] dT, String c1, String c2, int[] sn, boolean isc, boolean iso){
         this.imgURL = iu;
         this.dressName = dN;
         this.dressColor = dC;
@@ -96,11 +96,11 @@ public class dressItem {
         Cat2 = cat2;
     }
 
-    public int getSeason() {
+    public int[] getSeason() {
         return season;
     }
 
-    public void setSeason(int season) {
+    public void setSeason(int[] season) {
         this.season = season;
     }
 

@@ -3,156 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\4f51926bdbfab30320798f9de9dafec535b9206c\output\jars\classes.jar"
+        jar="/Users/hooney/Documents/GitHub/TalingTwoAndroidCloset/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e54c1d418e144c2e6d2449d6cfe6e1a80933c8be\classes.dex" />
+        sha1="7c1b7f3bf46f7388f1c43e55fb82dcbbbf40892c">
+        <dex dex="/Users/hooney/Documents/GitHub/TalingTwoAndroidCloset/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cd82cda6f0d0c8882aba48b7b135862c0532fe61/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\0bc154ddf8fcfec53a708768dd0c8abb7c3ba8e7\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_77c748bcae9759757b4f2029bebe1aba3f649dca\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\dd50b0c0f2e7606e2d404f181863d096573fc1e4\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3847e6a41a7c7e962cefd45a950af517a01c0aeb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\58ec6e80d332e8e354b1c179327d0949735808c2\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9d87151586c053598b90a50510414119fb73a5a4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\47f46144d5b9b0af1c2d43ed681d5f2d612533a1\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="9935891f23923f39d002087085d9696568a9f657">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b9e93f95841117eb872966c6c355708f7eb446d1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="62f94aa8424128ff87bfa6dfb75938683be681fe">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_da3b06c13f2ae4f0c08647925adcf97063eeff48\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\72f225546d920113d4bc2c9c2e5da68e60af6d9f\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c25bf485b05ac748542feef29af03bbbe9133140\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_804c230aaff88a2d31040f8fbd5bf380d9162266\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\5a4acdf01d560e85a980ffb7d32aa65c3d588978\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_774c5b7acdf955ac3362065101119b8a0891843d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/hooney/Documents/GitHub/TalingTwoAndroidCloset/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.1"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_9b6e3428ea49a394ea35ccc44ad512df83f1acd6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\7ef4d22f8effcafab2ceb5989dff43f70e442598\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ca56986f4000f03826b3fb3c0007a88be9bd9a07\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="023ee503b631f69511e335a061ea008f8da60f40">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_4a0e4cc5d1063faaf87d07c900b5ffe468a07c37\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\6de81e6926171675f3bcefff216e0fc4c9df8254\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="952944218ecedea1554a513dec0c14d570642843">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5512c10a060b35f845474d246a13d498e7c69152\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\94f36fb51c6c174445e0bdcb0a5ddcb37e0f8f4d\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_81af49113c2a897743fd6668825ab23da0808fd9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\be60e5e69c1488a1c505567975c4d04a20fd8bd9\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_714c58092051ed836d625a70e876b22ca242b6ca\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\ce1e27481b085cabbe852ab0afb063038728b43b\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_365374a282e79488cdd9e47d59fe8fd079712442\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\qewqs\.android\build-cache\595bb4aeab000a805390a5b33beeb8fe323b4698\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="26.0.1"
-        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
-        <dex dex="D:\Github\TalingTwoAndroidCloset\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_44124ee1f0e277242b918b535b3a164581fe836b\classes.dex" />
+        <dex dex="/Users/hooney/Documents/GitHub/TalingTwoAndroidCloset/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_c5c747a29f04bb5dc214642fe3f671fa11aab698/classes.dex" />
     </item>
 
 </items>

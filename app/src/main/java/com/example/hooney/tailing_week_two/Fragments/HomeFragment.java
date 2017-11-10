@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,10 @@ public class HomeFragment extends Fragment {
 
 
     private Button insertBTN;
-    private boolean isVisible;
-    private LinearLayout insertLinearLayout;
 
+    private boolean isVisible;
+
+    private LinearLayout insertLinearLayout;
     private Button Camera;
     private Button Gallery;
 
@@ -74,8 +76,8 @@ public class HomeFragment extends Fragment {
         gridView = (GridView) view.findViewById(R.id.home_gridview);
 
         insertBTN = (Button) view.findViewById(R.id.home_insert_button);
-        insertLinearLayout = (LinearLayout) view.findViewById(R.id.home_insert_Layout);
 
+        insertLinearLayout = (LinearLayout) view.findViewById(R.id.home_insert_Layout);
         Camera = (Button) view.findViewById(R.id.home_camera_btn);
         Gallery = (Button) view.findViewById(R.id.home_gallery_btn);
 
@@ -122,18 +124,23 @@ public class HomeFragment extends Fragment {
         if(requestCode == SIGNAL_toGallery){
             if(resultCode == Activity.RESULT_OK){
                 dressItem di = new dressItem();
+                di.setSeason(new int[]{1,2});
                 di.setImgURL(data.getData()+""); //스트링을 넣기
                 di.setDressName("Dress " +(list.size()));
                 list.add(di);
                 adapter.notifyDataSetChanged();
                 ((MainPageActivity)getActivity()).setList(list);
+
             }else{
                 //실패
             }
+            showUpLayout();
         }else if(requestCode == SIGNAL_toCamera){
             if(resultCode == Activity.RESULT_OK){
+                Log.d("Camera Data Set", "Camera url : " + data.getStringExtra("URI").toString());
                 dressItem di = new dressItem();
-                di.setImgURL(data.getData()+""); //스트링을 넣기
+                di.setSeason(new int[]{1,2});
+                di.setImgURL(data.getStringExtra("URI").toString()); //스트링을 넣기
                 di.setDressName("Dress " +(list.size()));
                 list.add(di);
                 adapter.notifyDataSetChanged();
@@ -141,8 +148,23 @@ public class HomeFragment extends Fragment {
             }else{
                 //실패
             }
+            showUpLayout();
         }else{
 
         }
+    }
+
+    public void showUpLayout(){
+        if(isVisible){
+            insertLinearLayout.setVisibility(View.GONE);
+            isVisible = false;
+        }else{
+            insertLinearLayout.setVisibility(View.VISIBLE);
+            isVisible = true;
+        }
+    }
+
+    private void sendServer(String url){
+        //치환해줘서 보내기
     }
 }
