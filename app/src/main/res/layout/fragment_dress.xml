@@ -5,9 +5,30 @@
     tools:context="com.example.hooney.tailing_week_two.Fragments.DressFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Dress Fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/getWeatherBTN"
+                android:text="날씨 받아오기"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/showWeatherTextview"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="현재 날씨는 ?"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

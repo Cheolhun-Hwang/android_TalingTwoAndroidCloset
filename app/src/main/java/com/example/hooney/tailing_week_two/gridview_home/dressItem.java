@@ -1,10 +1,12 @@
 package com.example.hooney.tailing_week_two.gridview_home;
 
+import java.io.Serializable;
+
 /**
  * Created by hooney on 2017. 11. 4..
  */
 
-public class dressItem {
+public class dressItem implements Serializable {
     //보여지는것
     private String imgURL;
 

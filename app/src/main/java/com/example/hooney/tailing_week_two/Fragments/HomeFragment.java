@@ -23,6 +23,9 @@ import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 import com.example.hooney.tailing_week_two.gridview_home.homeGridAdapter;
 import com.example.hooney.tailing_week_two.temppa.CameraSurfaceView;
 
+import java.io.DataOutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -48,6 +51,10 @@ public class HomeFragment extends Fragment {
     private Button Camera;
     private Button Gallery;
 
+    private byte[] data_byte;
+
+
+
     public HomeFragment() {
     }
 
@@ -64,8 +71,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
-        adapter = new homeGridAdapter(getContext(), R.layout.item_home_girdview, list);
+        adapter = new homeGridAdapter(getContext(), R.layout.item_home_girdview, list, getActivity().getSupportFragmentManager());
         gridView.setAdapter(adapter);
+
 
 
         return view;
@@ -138,6 +146,7 @@ public class HomeFragment extends Fragment {
         }else if(requestCode == SIGNAL_toCamera){
             if(resultCode == Activity.RESULT_OK){
                 Log.d("Camera Data Set", "Camera url : " + data.getStringExtra("URI").toString());
+                data_byte = data.getByteArrayExtra("data");
                 dressItem di = new dressItem();
                 di.setSeason(new int[]{1,2});
                 di.setImgURL(data.getStringExtra("URI").toString()); //스트링을 넣기
@@ -167,4 +176,48 @@ public class HomeFragment extends Fragment {
     private void sendServer(String url){
         //치환해줘서 보내기
     }
+
+    public void doFileUpload() {
+        DataOutputStream dos = null;
+        try {
+            URL url = new URL("http://localhost:65005/upload");
+            Log.i("doFileUpload", "http://localhost/upload" );
+            String lineEnd = "\r\n";
+            String twoHyphens = "--";
+            String boundary = "*****";
+            // open connection
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setDoInput(true); //input 허용
+            con.setDoOutput(true);  // output 허용
+            con.setUseCaches(false);   // cache copy를 허용하지 않는다.
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Connection", "Keep-Alive");
+            con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+
+            // write data
+            dos =
+                    new DataOutputStream(con.getOutputStream());
+            Log.i("doFileUpload", "Open OutputStream" );
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+            // 파일 전송시 파라메터명은 file1 파일명은 camera.jpg로 설정하여 전송
+            dos.writeBytes("Content-Disposition: form-data; name=\"file1\";filename=\"camera.jpg\"" +
+                    lineEnd);
+
+            dos.writeBytes(lineEnd);
+            dos.write(data_byte,0,data_byte.length);
+            Log.i("doFileUpload", data_byte.length+"bytes written" );
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+            dos.flush(); // finish upload...
+
+        } catch (Exception e) {
+            Log.i("doFileUpload", "exception " + e.getMessage());
+            // TODO: handle exception
+        }
+        Log.i("doFileUpload", data_byte.length+"bytes written successed ... finish!!" );
+        try { dos.close(); } catch(Exception e){}
+
+    }
+
 }

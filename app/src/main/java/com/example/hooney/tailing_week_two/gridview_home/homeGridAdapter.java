@@ -3,15 +3,21 @@ package com.example.hooney.tailing_week_two.gridview_home;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.hooney.tailing_week_two.DialogFragment.AddInfoFragment;
 import com.example.hooney.tailing_week_two.R;
 
 import java.io.IOException;
@@ -25,6 +31,7 @@ public class homeGridAdapter extends BaseAdapter {
     private Context context;
     private int layout; //아이템 레이아웃 정보ㅓ
     private ArrayList<dressItem> list;
+    private FragmentManager manager;
     LayoutInflater inf;
 
     public homeGridAdapter() {
@@ -37,6 +44,15 @@ public class homeGridAdapter extends BaseAdapter {
         this.context = context;
         this.layout = layout;
         this.list = list;
+
+        inf=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public homeGridAdapter(Context context, int layout, ArrayList<dressItem> list, FragmentManager m) {
+        this.context = context;
+        this.layout = layout;
+        this.list = list;
+        this.manager = m;
 
         inf=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -127,6 +143,14 @@ public class homeGridAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Toast.makeText(context, "옷 명칭 : " + di.getDressName(), Toast.LENGTH_SHORT).show();
                 Log.d("Home Gride Item", "Select Postion : " + postion +" / Select Dress Name : " + di.getDressName());
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("item", di);
+                bundle.putInt("index", postion);
+                AddInfoFragment fragment = new AddInfoFragment();
+                fragment.setArguments(bundle);
+
+                fragment.show(manager, "AddInfoFragment");
             }
         });
 

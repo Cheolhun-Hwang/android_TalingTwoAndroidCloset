@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class CameraActivity extends AppCompatActivity {
     private String outUriStr;
 
     private Camera cntCamera;
+    private byte[] data_byte;
 
 
     @Override
@@ -73,6 +75,7 @@ public class CameraActivity extends AppCompatActivity {
                         try{
                             cntCamera = camera;
                             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                            data_byte = data;
 
                             // 화면 회전을 위한 matrix객체 생성
                             Matrix m = new Matrix();
@@ -92,8 +95,14 @@ public class CameraActivity extends AppCompatActivity {
                                 return;
                             }else{
                                 //String folder = Environment.getExternalStorageDirectory().getAbsolutePath();
-                                Uri uri = Uri.parse(outUriStr);
-                                getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+                                    Uri uri = Uri.parse(outUriStr);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                                    getApplicationContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+                                } else {
+                                    final Intent intent = new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri.parse("file://" + Environment.getExternalStorageDirectory()));
+                                    sendBroadcast(intent);
+                                }
+
 
                                 new MediaScanning(getApplicationContext(), uri);
 
@@ -124,6 +133,7 @@ public class CameraActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeFragment.class);
                 intent.putExtra("URI", outUriStr);
+                intent.putExtra("data", data_byte);
                 setResult(RESULT_OK, intent);
                 finish();
             }
