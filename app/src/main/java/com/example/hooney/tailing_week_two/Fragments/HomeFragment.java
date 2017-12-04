@@ -4,29 +4,43 @@ package com.example.hooney.tailing_week_two.Fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hooney.tailing_week_two.CameraActivity;
+import com.example.hooney.tailing_week_two.DialogFragment.AddInfoFragment;
 import com.example.hooney.tailing_week_two.MainPageActivity;
+import com.example.hooney.tailing_week_two.Net.SendPost;
 import com.example.hooney.tailing_week_two.R;
 import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 import com.example.hooney.tailing_week_two.gridview_home.homeGridAdapter;
 import com.example.hooney.tailing_week_two.temppa.CameraSurfaceView;
 
+
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static java.util.Base64.getEncoder;
 
 
 /**
@@ -73,8 +87,6 @@ public class HomeFragment extends Fragment {
         init();
         adapter = new homeGridAdapter(getContext(), R.layout.item_home_girdview, list, getActivity().getSupportFragmentManager());
         gridView.setAdapter(adapter);
-
-
 
         return view;
     }
@@ -123,6 +135,20 @@ public class HomeFragment extends Fragment {
                 startActivityForResult(intent, SIGNAL_toCamera);
             }
         });
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int id, long position) {
+                Toast.makeText(getContext(), "ID : "+ id, Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", id);
+                AddInfoFragment fragment = new AddInfoFragment();
+                fragment.setArguments(bundle);
+
+                fragment.show(getActivity().getSupportFragmentManager(), "AddInfoFragment");
+            }
+        });
     }
 
     @Override
@@ -131,6 +157,12 @@ public class HomeFragment extends Fragment {
 
         if(requestCode == SIGNAL_toGallery){
             if(resultCode == Activity.RESULT_OK){
+                data_byte = data.getByteArrayExtra("data");
+                Log.d("Imgae Data : " , "Data : " + data.getData());
+                Log.d("Imgae Data : " , "Byte : " + data_byte);
+
+                parser(data.getDataString());
+
                 dressItem di = new dressItem();
                 di.setSeason(new int[]{1,2});
                 di.setImgURL(data.getData()+""); //스트링을 넣기
@@ -147,9 +179,20 @@ public class HomeFragment extends Fragment {
             if(resultCode == Activity.RESULT_OK){
                 Log.d("Camera Data Set", "Camera url : " + data.getStringExtra("URI").toString());
                 data_byte = data.getByteArrayExtra("data");
+                Log.d("Imgae Data : " , "Data : " + data.getData());
+                Log.d("Imgae Data : " , "Byte : " + data_byte);
                 dressItem di = new dressItem();
                 di.setSeason(new int[]{1,2});
                 di.setImgURL(data.getStringExtra("URI").toString()); //스트링을 넣기
+
+
+
+
+
+
+
+
+
                 di.setDressName("Dress " +(list.size()));
                 list.add(di);
                 adapter.notifyDataSetChanged();
@@ -173,18 +216,11 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void sendServer(String url){
-        //치환해줘서 보내기
-    }
-
     public void doFileUpload() {
         DataOutputStream dos = null;
         try {
             URL url = new URL("http://localhost:65005/upload");
             Log.i("doFileUpload", "http://localhost/upload" );
-            String lineEnd = "\r\n";
-            String twoHyphens = "--";
-            String boundary = "*****";
             // open connection
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setDoInput(true); //input 허용
@@ -192,24 +228,10 @@ public class HomeFragment extends Fragment {
             con.setUseCaches(false);   // cache copy를 허용하지 않는다.
             con.setRequestMethod("POST");
             con.setRequestProperty("Connection", "Keep-Alive");
-            con.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
 
             // write data
-            dos =
-                    new DataOutputStream(con.getOutputStream());
+            dos = new DataOutputStream(con.getOutputStream());
             Log.i("doFileUpload", "Open OutputStream" );
-            dos.writeBytes(twoHyphens + boundary + lineEnd);
-
-            // 파일 전송시 파라메터명은 file1 파일명은 camera.jpg로 설정하여 전송
-            dos.writeBytes("Content-Disposition: form-data; name=\"file1\";filename=\"camera.jpg\"" +
-                    lineEnd);
-
-            dos.writeBytes(lineEnd);
-            dos.write(data_byte,0,data_byte.length);
-            Log.i("doFileUpload", data_byte.length+"bytes written" );
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-            dos.flush(); // finish upload...
 
         } catch (Exception e) {
             Log.i("doFileUpload", "exception " + e.getMessage());
@@ -218,6 +240,32 @@ public class HomeFragment extends Fragment {
         Log.i("doFileUpload", data_byte.length+"bytes written successed ... finish!!" );
         try { dos.close(); } catch(Exception e){}
 
+    }
+
+    private void parser(String data){
+        try {
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), Uri.parse(data));
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] b = baos.toByteArray();
+            final String imageEncoded = Base64.encodeToString(b,Base64.DEFAULT);
+
+            Log.d("Image Base64 Byte", "BASE 64 : " + imageEncoded);
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    new SendPost("uploadimg.php", "?image=", imageEncoded).SendPost();
+                }
+            });
+
+            t.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

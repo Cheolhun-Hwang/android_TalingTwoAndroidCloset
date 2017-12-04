@@ -15,6 +15,8 @@ public class dressItem implements Serializable {
     private String[] dressColor;
     private String[] dressTag;
 
+
+
     private String Cat1;
     private String Cat2;
 

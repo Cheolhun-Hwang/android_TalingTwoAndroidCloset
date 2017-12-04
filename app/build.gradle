@@ -19,6 +19,7 @@ android {
     }
 
     useLibrary 'org.apache.http.legacy'
+    sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/xml'] } }
 }
 
 dependencies {

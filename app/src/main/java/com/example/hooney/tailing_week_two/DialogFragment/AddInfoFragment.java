@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hooney.tailing_week_two.MainActivity;
+import com.example.hooney.tailing_week_two.MainPageActivity;
 import com.example.hooney.tailing_week_two.R;
 import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 
@@ -25,7 +27,7 @@ public class AddInfoFragment extends DialogFragment {
 
     private ArrayList<dressItem> list;
     private int Index;
-
+    private int id;
 
 
 
@@ -41,6 +43,17 @@ public class AddInfoFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.fragment_add_info, null);
         dialog.setContentView(view);
+
+
+        //String string[] = tempString.split(", ");
+       // string[0].replaceAll("#", "");
+        // "#내용" > "내용"
+
+        list = ((MainPageActivity)getActivity()).getList();
+
+        list.get(id).setDressTag(new String[]{""});
+
+       ((MainPageActivity) getActivity()).setList(list);
 
 
 

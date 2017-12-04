@@ -17,12 +17,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.hooney.tailing_week_two.MainPageActivity;
 import com.example.hooney.tailing_week_two.R;
+import com.example.hooney.tailing_week_two.gridview_home.dressItem;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.Future;
 
 import static android.app.Activity.RESULT_OK;
@@ -36,6 +39,8 @@ public class DashFragment extends Fragment {
     private ImageView img;
     private String path;
 
+    private ArrayList<dressItem> list;
+
     public DashFragment() {
         // Required empty public constructor
     }
@@ -46,6 +51,14 @@ public class DashFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_dash, container, false);
+
+
+        list = ((MainPageActivity)getActivity()).getList();
+
+
+
+        Toast.makeText(getContext(), "옷 이름 1 : " + list.get(0).getDressName(), Toast.LENGTH_SHORT).show();
+
 
         /*img = (ImageView)view.findViewById(R.id.img);
         Ion.getDefault(this).configure().setLogging("ion-sample", Log.DEBUG);

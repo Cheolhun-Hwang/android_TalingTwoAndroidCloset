@@ -19,7 +19,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -67,18 +73,44 @@ public class DressFragment extends Fragment {
     }
 
     private String getWeatherToServer() throws Exception {
-        HttpClient client = new DefaultHttpClient();
-        String url = "http://192.168.83.1:65001/weather";
+        HttpURLConnection con = null;
+        BufferedReader reader = null;
+        String url_string = "https://192.168.43.130:65001/weather";
+        try{
+            URL url = new URL(url_string);
+            con = (HttpURLConnection) url.openConnection();
+            con.connect();
 
-        HttpGet get = new HttpGet(url);
-        HttpResponse response = client.execute(get);
-        HttpEntity resEntity = response.getEntity();
-        if(resEntity != null){
-            return EntityUtils.toString(resEntity);
-        }else{
-            return "None";
+            InputStream stream = con.getInputStream();
+
+            reader = new BufferedReader(new InputStreamReader(stream));
+
+            StringBuffer buffer = new StringBuffer();
+
+            String line = "";
+            while((line = reader.readLine()) != null){
+                buffer.append(line);
+            }
+
+            return buffer.toString();
+
+        } catch (MalformedURLException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(con != null){
+                con.disconnect();
+            }
+            try {
+                if(reader != null){
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-
+        return "None";
     }
 }

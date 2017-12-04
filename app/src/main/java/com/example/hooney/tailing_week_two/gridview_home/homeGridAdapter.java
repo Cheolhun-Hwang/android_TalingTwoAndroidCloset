@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.hooney.tailing_week_two.DialogFragment.AddInfoFragment;
+import com.example.hooney.tailing_week_two.MainActivity;
 import com.example.hooney.tailing_week_two.R;
 
 import java.io.IOException;
@@ -85,6 +86,7 @@ public class homeGridAdapter extends BaseAdapter {
         tempString+= ("옷 이름 : " + di.getDressName()+"\n");
         tempString+= ("카테고리 : " + di.getCat1() + " > " + di.getCat2() +"\n");
 
+
         tempString+= ("옷 계절 : ");
         int[] tempSeason = di.getSeason();
         for(int i = 0 ; i< tempSeason.length ; i++){
@@ -138,7 +140,7 @@ public class homeGridAdapter extends BaseAdapter {
             }
         }
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        /*imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "옷 명칭 : " + di.getDressName(), Toast.LENGTH_SHORT).show();
@@ -152,7 +154,7 @@ public class homeGridAdapter extends BaseAdapter {
 
                 fragment.show(manager, "AddInfoFragment");
             }
-        });
+        });*/
 
         return convertView;
     }
